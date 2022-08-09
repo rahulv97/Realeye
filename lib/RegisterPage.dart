@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -23,10 +24,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     Text(
                       "REALEYE",
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary,
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold),
+                      style: GoogleFonts.itim(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                        color: Colors.blue,
+                      ),
                     ),
                     SizedBox(height: 10),
                     Container(
@@ -35,7 +37,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: CircleAvatar(
                         backgroundColor: Colors.transparent,
                         child: Image.asset(
-                          "assets/eye.png",
+                          "assets/profile.jpg",
                           fit: BoxFit.cover,
                         ),
                       ),

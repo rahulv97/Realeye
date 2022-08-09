@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -23,10 +24,11 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Text(
                       "REALEYE",
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary,
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold),
+                      style: GoogleFonts.itim(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                        color: Colors.blue,
+                      ),
                     ),
                     SizedBox(height: 10),
                     TextField(
