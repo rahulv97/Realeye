@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:realeye_india/RegisterPage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -59,7 +60,10 @@ class _LoginPageState extends State<LoginPage> {
                 style: TextStyle(fontSize: 16),
               ),
               CupertinoButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => RegisterPage()));
+                },
                 child: Text(
                   "Sign Up",
                   style: TextStyle(fontSize: 16),
