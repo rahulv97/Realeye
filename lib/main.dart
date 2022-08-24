@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:realeye_india/AddNew.dart';
-import 'package:realeye_india/DashBoard.dart';
 import 'package:realeye_india/LoginPage.dart';
-import 'package:realeye_india/RegisterPage.dart';
+import 'package:realeye_india/models/sheetModels.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  UserSheetsApi.init();
   runApp(const MyApp());
 }
 
