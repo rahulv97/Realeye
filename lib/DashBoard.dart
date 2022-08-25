@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:realeye_india/AddNew.dart';
+import 'package:realeye_india/models/addUserField.dart';
+import 'package:realeye_india/models/sheetModels.dart';
+import 'package:realeye_india/models/userwidget.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({Key? key}) : super(key: key);
@@ -10,6 +15,25 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
+  List<User> users = [];
+
+  int index = 0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    getUsers();
+  }
+
+  Future getUsers() async {
+    final users = await UserSheetsApi.getAll();
+
+    setState(() {
+      this.users = users;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +72,7 @@ class _DashBoardState extends State<DashBoard> {
                     child: ListView.builder(
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
-                      itemCount: 20,
+                      itemCount: users.length,
                       itemBuilder: (context, int index) {
                         return Padding(
                           padding: const EdgeInsets.all(10),
@@ -71,7 +95,7 @@ class _DashBoardState extends State<DashBoard> {
                                               fontWeight: FontWeight.bold),
                                         ),
                                         SizedBox(width: 100),
-                                        Text("Vishal Rai")
+                                        Text(users[index].name)
                                       ],
                                     ),
                                   ),
@@ -85,7 +109,7 @@ class _DashBoardState extends State<DashBoard> {
                                               fontWeight: FontWeight.bold),
                                         ),
                                         SizedBox(width: 40),
-                                        Text("8360055915"),
+                                        Text(users[index].phoneNo),
                                       ],
                                     ),
                                   ),
@@ -100,8 +124,7 @@ class _DashBoardState extends State<DashBoard> {
                                         ),
                                         SizedBox(width: 85),
                                         Flexible(
-                                          child: Text(
-                                              "Makkar Colony, Dhandari Kalan, Ludhiana"),
+                                          child: Text(users[index].address),
                                         ),
                                       ],
                                     ),
@@ -116,7 +139,7 @@ class _DashBoardState extends State<DashBoard> {
                                               fontWeight: FontWeight.bold),
                                         ),
                                         SizedBox(width: 65),
-                                        Text("Nothing"),
+                                        Text(users[index].description),
                                       ],
                                     ),
                                   ),

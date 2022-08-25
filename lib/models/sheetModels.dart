@@ -29,7 +29,7 @@ class UserSheetsApi {
   static Future init() async {
     try {
       final spreadsheet = await _gsheets.spreadsheet(_spreadsheetId);
-      _userSheet = await _getWorkSheet(spreadsheet, title: 'UserRecord');
+      _userSheet = await _getWorkSheet(spreadsheet, title: 'UserRecords');
 
       final firstRow = UserFields.getfields();
       _userSheet!.values.insertRow(1, firstRow);
@@ -49,9 +49,28 @@ class UserSheetsApi {
     }
   }
 
+  static Future<int> getRowCount() async {
+    if (_userSheet == null) return 0;
+    final lastRow = await _userSheet!.values.lastRow();
+    return lastRow == null ? 0 : int.tryParse(lastRow.first) ?? 0;
+  }
+
+  static Future<User?> getBySrno(int srno) async {
+    if (_userSheet == null) return null;
+    final json = await _userSheet!.values.map.rowByKey(srno, fromColumn: 1);
+
+    return json == null ? null : User.fromJson(json);
+  }
+
+  static Future<List<User>> getAll() async {
+    if (_userSheet == null) return <User>[];
+    final users = await _userSheet!.values.map.allRows();
+
+    return users == null ? <User>[] : users.map(User.fromJson).toList();
+  }
+
   static Future insert(List<Map<String, dynamic>> rowList) async {
     if (_userSheet == null) return;
-
     _userSheet!.values.map.appendRows(rowList);
   }
 }
