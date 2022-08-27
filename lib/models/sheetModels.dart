@@ -27,14 +27,14 @@ class UserSheetsApi {
   static Worksheet? _userSheet;
 
   static Future init() async {
+    final spreadsheet = await _gsheets.spreadsheet(_spreadsheetId);
     try {
-      final spreadsheet = await _gsheets.spreadsheet(_spreadsheetId);
-      _userSheet = await _getWorkSheet(spreadsheet, title: 'UserRecords');
+      _userSheet = await _getWorkSheet(spreadsheet, title: 'User Records');
 
       final firstRow = UserFields.getfields();
       _userSheet!.values.insertRow(1, firstRow);
     } catch (e) {
-      print('Init error $e');
+      _userSheet = spreadsheet.worksheetByTitle('User Records');
     }
   }
 

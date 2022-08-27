@@ -1,11 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:realeye_india/AddNew.dart';
 import 'package:realeye_india/models/addUserField.dart';
 import 'package:realeye_india/models/sheetModels.dart';
-import 'package:realeye_india/models/userwidget.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({Key? key}) : super(key: key);
@@ -23,7 +20,9 @@ class _DashBoardState extends State<DashBoard> {
     // TODO: implement initState
     super.initState();
 
-    getUsers();
+    setState(() {
+      getUsers();
+    });
   }
 
   Future getUsers() async {
@@ -33,6 +32,8 @@ class _DashBoardState extends State<DashBoard> {
       this.users = users;
     });
   }
+
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -77,80 +78,80 @@ class _DashBoardState extends State<DashBoard> {
                         return Padding(
                           padding: const EdgeInsets.all(10),
                           child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 5),
-                              decoration: BoxDecoration(
-                                color: Colors.blue.withOpacity(0.5),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          "Name",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        SizedBox(width: 100),
-                                        Text(users[index].name)
-                                      ],
-                                    ),
+                            padding: EdgeInsets.symmetric(vertical: 5),
+                            decoration: BoxDecoration(
+                              color: Colors.blue.withOpacity(0.5),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        "Name",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(width: 100),
+                                      Text(users[index].name)
+                                    ],
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          "Phone Number",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        SizedBox(width: 40),
-                                        Text(users[index].phoneNo),
-                                      ],
-                                    ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        "Phone Number",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(width: 40),
+                                      Text(users[index].phoneNo),
+                                    ],
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          "Address",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        SizedBox(width: 85),
-                                        Flexible(
-                                          child: Text(users[index].address),
-                                        ),
-                                      ],
-                                    ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        "Address",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(width: 85),
+                                      Flexible(
+                                        child: Text(users[index].address),
+                                      ),
+                                    ],
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          "Description",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        SizedBox(width: 65),
-                                        Text(users[index].description),
-                                      ],
-                                    ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        "Description",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(width: 65),
+                                      Text(users[index].description),
+                                    ],
                                   ),
-                                ],
-                              )),
+                                ),
+                              ],
+                            ),
+                          ),
                         );
                       },
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
               ],
             ),
           ),
